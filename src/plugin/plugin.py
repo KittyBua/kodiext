@@ -441,7 +441,7 @@ class KodiVideoPlayer(InfoBarBase, InfoBarShowHide, SubsSupportStatus, SubsSuppo
             "upUp": (playlistCallback, _("Show playlist"))
         })
 
-        self["okCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+        self["okCancelActions"] = HelpableActionMap(self, "KodiOkCancelActions",
         {
             "cancel": self.close
         })
@@ -506,7 +506,7 @@ class KodiVideoPlayer(InfoBarBase, InfoBarShowHide, SubsSupportStatus, SubsSuppo
             self.__timer.start(500, True)
         else:
             Notifications.RemovePopup(self.RESUME_POPUP_ID)
-            self.doSeek(long(self.__position))
+            self.doSeek(self.__position)
 
     def setImage(self, image):
         self.__image = image
@@ -892,10 +892,12 @@ class KodiLauncher(Screen):
         def psCallback(data, retval, extraArgs):
             FBLock()
             kodiProc = None
-            procs = data.split(b'\n')
+            if isinstance(data, bytes):
+                data = data.decode()
+            procs = data.split('\n')
             if len(procs) > 0:
                 for p in procs:
-                    if b'kodi.bin' in p:
+                    if 'kodi.bin' in p:
                         if kodiProc is not None:
                             print('[KodiLauncher] startup - there are more kodi processes running!')
                             return self.stop()
