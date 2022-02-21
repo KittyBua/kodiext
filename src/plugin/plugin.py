@@ -630,15 +630,15 @@ class Meta(object):
 
         filename = self.getFilename()
         if not plot and fileExists(str(filename) + ".spztxt"):
-            f=open(str(filename) + ".spztxt", "r")
-            tok=0
+            f = open(str(filename) + ".spztxt", "r")
+            tok = 0
             for line in f.readlines():
-                idx=line.find("->")
+                idx = line.find("->")
                 if idx != -1:
-                    if tok==0:
-                        tok=1
-                    elif tok==1:
-                        plot=u''+line[idx+3:]
+                    if tok == 0:
+                        tok = 1
+                    elif tok == 1:
+                        plot = u'' + line[idx + 3:]
                         break
             f.close()
 
@@ -676,7 +676,7 @@ class VideoInfoView(Screen):
            <widget source="description" position="330,150" size="800,400" font="RegularHD; 20" render="RunningTextSpa" options="movetype=swimming,startpoint=0,direction=top,steptime=100,repeat=0,always=0,oneshot=0,startdelay=15000,pause=500,backtime=5" noWrap="0"/>
         </screen>"""
     else:
-        skin="""
+        skin = """
         <screen position="center,center" size="766,400" title="View Video Info" >
            <widget name="image" position="10,100" size="200,266" alphatest="on" transparent="1"/>
            <widget source="session.CurrentService" render="Label" position="13,13" size="740,28" zPosition="1"  font="Regular;26" valign="center" halign="left" foregroundColor="#00ffa533" transparent="1">
@@ -692,7 +692,7 @@ class VideoInfoView(Screen):
         Screen.__init__(self, session)
 
         self["genre"] = Label()
-        self["description"]=Label()
+        self["description"] = Label()
         # load meta info from json file provided by Kodi Enigma2Player
         try:
             meta = json.load(open(KODIEXTIN, "r"))
@@ -904,7 +904,7 @@ class KodiLauncher(Screen):
                         kodiProc = p.split()
             if kodiProc is not None:
                 kodiPid = int(kodiProc[0])
-                print("[KodiLauncher] startup: kodi is running, pid = %d , resuming..."% kodiPid)
+                print("[KodiLauncher] startup: kodi is running, pid = %d , resuming..." % kodiPid)
                 self.resumeKodi(kodiPid)
             else:
                 print("[KodiLauncher] startup: kodi is not running, starting...")

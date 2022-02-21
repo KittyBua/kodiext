@@ -357,7 +357,7 @@ class StatusScreen(Screen):
 class InfoBarSubservicesSupport(object):
     def __init__(self):
         self["InfoBarSubservicesActions"] = HelpableActionMap(self,
-                "ColorActions", { "green": (self.showSubservices, _("Show subservices"))}, -2)
+                "ColorActions", {"green": (self.showSubservices, _("Show subservices"))}, -2)
         self.__timer = eTimer()
         self.__timer.callback.append(self.__seekToCurrentPosition)
         self.onClose.append(self.__timer.stop)
@@ -377,8 +377,8 @@ class InfoBarSubservicesSupport(object):
             choice_list.append((subservice_ref.getName(), subservice_ref))
         if numsubservices > 1:
             self.session.openWithCallback(self.subserviceSelected, ChoiceBox,
-                title = _("Please select subservice..."), list = choice_list,
-                selection = selection, skin_name="SubserviceSelection")
+                title=_("Please select subservice..."), list=choice_list,
+                selection=selection, skin_name="SubserviceSelection")
 
     def subserviceSelected(self, service_ref):
         if service_ref:
