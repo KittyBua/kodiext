@@ -206,7 +206,7 @@ def SaveDesktopInfo():
     print "[XBMC] Desktop size [%dx%d]" % (_g_dw, _g_dh)
     if not fileExists('/tmp/dw.info'):
         os.system('touch /tmp/dw.info')
-    os.system('chmod 755 /tmp/dw.info')
+    os.system('chmod 0o755 /tmp/dw.info')
     open("/tmp/dw.info", "w").write(str(_g_dw) + "x" + str(_g_dh))
 
 
