@@ -36,7 +36,7 @@ from enigma import eServiceReference, eTimer, ePythonMessagePump, \
 from Components.SystemInfo import SystemInfo
 from .server import KodiExtRequestHandler, UDSServer
 from Tools.BoundFunction import boundFunction
-from boxbranding import getBoxBrand
+from Tools.HardwareInfo import HardwareInfo
 
 from six.moves.queue import Queue
 
@@ -163,7 +163,7 @@ class SetResolution:
         self.kodirate = "50Hz"
         self.port = config.av.videoport.value
         self.rate = None
-        if getBoxBrand() in ('Vu+', 'Formuler'):
+        if HardwareInfo().get_device_name() in ("Formuler1", "vusolo4k", "vuzero4k", "vuduo4k", "vuduo4kse", "vuuno4k", "vuuno4kse", "vuultimo4k")
             resolutions = ("720i", "720p")
         else:
             resolutions = ("720i", "720p", "1080i", "1080p")
@@ -795,7 +795,7 @@ class E2KodiExtServer(UDSServer):
         RCUnlock()
 
         setaudio.switch(False, True)
-        if getBoxBrand() not in ('Vu+', 'Formuler'):
+        if HardwareInfo().get_device_name() not in ("Formuler1", "vusolo4k", "vuzero4k", "vuduo4k", "vuduo4kse", "vuuno4k", "vuuno4kse", "vuultimo4k")
             setresolution.switch(False, True)
         # parse subtitles, play path and service type from data
         sType = 4097
@@ -862,7 +862,7 @@ class E2KodiExtServer(UDSServer):
 
     def kodiPlayerExitCB(self, callback=None):
         setaudio.switch(True, True)
-        if getBoxBrand() not in ('Vu+', 'Formuler'):
+        if HardwareInfo().get_device_name() not in ("Formuler1", "vusolo4k", "vuzero4k", "vuduo4k", "vuduo4kse", "vuuno4k", "vuuno4kse", "vuultimo4k")
             setresolution.switch(True, True)
         SESSION.nav.stopService()
         self.kodiPlayer = None
