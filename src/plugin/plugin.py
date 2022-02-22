@@ -188,8 +188,8 @@ class SetResolution:
 
     def ReadData(self):
         self.E2res = config.av.videomode[self.port].value
-	self.rate = config.av.videorate[self.E2res].value
-	self.switch(True)
+        self.rate = config.av.videorate[self.E2res].value
+        self.switch(True)
 
 
 setaudio = SetAudio()
@@ -273,14 +273,14 @@ class KodiVideoPlayer(InfoBarBase, InfoBarShowHide, SubsSupportStatus, SubsSuppo
               <convert type="ServiceName">Name</convert>
             </widget>
             <widget name="genre" position="65,86" size="1845,35" zPosition="2" font="RegularHD;19" valign="center" halign="left"/>
-            <eLabel name="progressbar-back" position="343,900" size="1500,4" backgroundColor="#00cccccc" />
+        <eLabel name="progressbar-back" position="343,900" size="1500,4" backgroundColor="#00cccccc" />
             <widget source="session.CurrentService" render="Progress" foregroundColor="#00007eff" backgroundColor="#00ffffff" position="343,897" size="1500,10" zPosition="7" transparent="0">
                 <convert type="ServicePosition">Position</convert>
             </widget>
             <widget source="session.CurrentService" render="Label" position="750,935" size="180,67" zPosition="6" font="RegularHD;32" halign="left"   transparent="1">
                 <convert type="ServicePosition">Position,ShowHours</convert>
             </widget>
-	    <eLabel name="" text="/" position="927,935" size="20,67" zPosition="6" font="RegularHD;32"/>
+        <eLabel name="" text="/" position="927,935" size="20,67" zPosition="6" font="RegularHD;32"/>
             <widget source="session.CurrentService" render="Label" position="952,935" size="180,67" zPosition="6" font="RegularHD;32" halign="left"   transparent="1">
                 <convert type="ServicePosition">Length,ShowHours</convert>
             </widget>
@@ -341,7 +341,7 @@ class KodiVideoPlayer(InfoBarBase, InfoBarShowHide, SubsSupportStatus, SubsSuppo
             <widget source="session.CurrentService" render="Label" position="500,623" size="120,44" zPosition="6" font="Regular;32" halign="left"   transparent="1">
                 <convert type="ServicePosition">Position,ShowHours</convert>
             </widget>
-	    <eLabel name="" text="/" position="618,623" size="13,44" zPosition="6" font="Regular;32"/>
+        <eLabel name="" text="/" position="618,623" size="13,44" zPosition="6" font="Regular;32"/>
             <widget source="session.CurrentService" render="Label" position="634,623" size="120,44" zPosition="6" font="Regular;32" halign="left"   transparent="1">
                 <convert type="ServicePosition">Length,ShowHours</convert>
             </widget>
@@ -484,14 +484,14 @@ class KodiVideoPlayer(InfoBarBase, InfoBarShowHide, SubsSupportStatus, SubsSuppo
             InfoBarSeek.seekFwdManual(self)
 
     def keyl(self):
-	try:
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/TimeSleep/plugin.pyo") or fileExists("/usr/lib/enigma2/python/Plugins/Extensions/TimeSleep/plugin.so"):
-			from Plugins.Extensions.TimeSleep.plugin import timesleep
-			timesleep(self, False)
-		else:
-			InfoBarSeek.seekBackManual(self)
-	except:
-		InfoBarSeek.seekBackManual(self)
+        try:
+            if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/TimeSleep/plugin.pyo") or fileExists("/usr/lib/enigma2/python/Plugins/Extensions/TimeSleep/plugin.so"):
+                from Plugins.Extensions.TimeSleep.plugin import timesleep
+                timesleep(self, False)
+            else:
+                InfoBarSeek.seekBackManual(self)
+        except:
+            InfoBarSeek.seekBackManual(self)
 
     def __evStart(self):
         if self.__position and self.__firstStart:
@@ -572,17 +572,17 @@ class Meta(object):
                     title += u" (" + str(year) + u")"
         if not title:
             title = self.meta.get("title")
-	filename = self.getFilename()
-	if not title and fileExists(str(filename) + ".spztxt"):
-		f = open(str(filename) + ".spztxt", "r")
-		tok = 0
-		for line in f.readlines():
-			idx = line.find("->")
-			if idx != -1:
-				if tok == 0:
-					title = u'' + line[idx + 3:]
-					break
-		f.close()
+        filename = self.getFilename()
+        if not title and fileExists(str(filename) + ".spztxt"):
+            f = open(str(filename) + ".spztxt", "r")
+            tok = 0
+            for line in f.readlines():
+                idx = line.find("->")
+                if idx != -1:
+                    if tok == 0:
+                        title = u'' + line[idx + 3:]
+                        break
+            f.close()
         if not title:
             listItem = self.meta.get("listItem")
             if listItem:
@@ -650,15 +650,15 @@ class Meta(object):
         if vTag and vTag.get("genre"):
             genre = vTag.get("genre")
 
-	filename = self.getFilename()
-	if not genre and fileExists(str(filename) + ".spztxt"):
-		f = open(str(filename) + ".spztxt", "r")
-		for line in f.readlines():
-			if line.split(":")[0] == 'Género':
-				genrestr = u'' + line.split(":")[1][1:]
-				genre = genrestr.split(" | ")
-				break
-		f.close()
+        filename = self.getFilename()
+        if not genre and fileExists(str(filename) + ".spztxt"):
+            f = open(str(filename) + ".spztxt", "r")
+            for line in f.readlines():
+                if line.split(":")[0] == 'Género':
+                    genrestr = u'' + line.split(":")[1][1:]
+                    genre = genrestr.split(" | ")
+                    break
+            f.close()
 
         return genre
 
