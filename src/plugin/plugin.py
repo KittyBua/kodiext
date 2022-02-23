@@ -201,7 +201,7 @@ def SaveDesktopInfo():
         _g_dh = getDesktop(0).size().height()
     except:
         _g_dw, _g_dh = 1280, 720
-    print "[XBMC] Desktop size [%dx%d]" % (_g_dw, _g_dh)
+    print("[XBMC] Desktop size [%dx%d]" % (_g_dw, _g_dh))
     if not fileExists('/tmp/dw.info'):
         os.system('touch /tmp/dw.info')
     os.system('chmod 0o755 /tmp/dw.info')
