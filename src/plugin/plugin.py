@@ -23,7 +23,7 @@ from Tools import Notifications
 from Components.config import config
 from Components.AVSwitch import InitAVSwitch
 
-from Plugins.SystemPlugins.Videomode.VideoHardware import VideoHardware
+from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 from Components.AVSwitch import AVSwitch
 
 from .e2utils import InfoBarAspectChange, WebPixmap, MyAudioSelection, \
@@ -166,11 +166,11 @@ class SetResolution:
     def switch(self, Tokodi=False, Player=False):
         if Tokodi:
             if self.kodires and self.kodirate and self.port:
-                # FIXME! VideoHardware.setMode(port = self.port, mode = self.kodires, rate = self.kodirate)
+                video_hw.setMode(port = self.port, mode = self.kodires, rate = self.kodirate)
                 open("/proc/stb/video/videomode", "w").write(self.kodires + self.kodirate.replace("Hz", ""))
         else:
             if self.E2res and self.rate and self.port:
-                AVSwitch.setMode(self.port, self.E2res, self.rate)
+                video_hw.setMode(self.port, self.E2res, self.rate)
 
     def ReadData(self):
         self.E2res = config.av.videomode[self.port].value
