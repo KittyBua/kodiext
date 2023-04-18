@@ -427,7 +427,7 @@ class KodiVideoPlayer(InfoBarBase, InfoBarShowHide, SubsSupportStatus, SubsSuppo
             "upUp": (playlistCallback, _("Show playlist"))
         })
 
-        self["okCancelActions"] = HelpableActionMap(self, "KodiOkCancelActions",
+        self["okCancelActions"] = HelpableActionMap(self, "OkCancelActions",
         {
             "cancel": self.close
         })

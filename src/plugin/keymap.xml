@@ -9,14 +9,13 @@
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="m" />
 	</map>
 
-	<map context="KodiOkCancelActions">
+	<map context="OkCancelActions">
 		<key id="KEY_STOP" mapto="cancel" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
 	</map>
 
-	<!-- FIXME DO WE NEED THIS -->
-	<map context="KodiInfobarSeekActions">
+	<map context="InfobarSeekActions">
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="unPauseService" flags="m" />
@@ -25,13 +24,12 @@
 		<key id="KEY_OK" mapto="okButton" flags="m" />
 	</map>
 
-	<!-- FIXME DO WE NEED THIS -->
-	<map context="KodiSubtitlesActions">
+	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
 		<key id="KEY_BLUE" mapto="subtitles" flags="m" />
 	</map>
 
-	<map context="KodiInfoBarAspectChangeActions">
+	<map context="InfoBarAspectChangeActions">
 		<key id="KEY_ZOOM" mapto="aspectChange" flags="m" />
 		<key id="KEY_5" mapto="aspectChange" flags="m" />
 	</map>
