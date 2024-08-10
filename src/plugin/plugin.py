@@ -31,7 +31,7 @@ from .e2utils import InfoBarAspectChange, WebPixmap, MyAudioSelection, \
     InfoBarSubservicesSupport
 from enigma import eServiceReference, eTimer, ePythonMessagePump, \
     iPlayableService, fbClass, eRCInput, getDesktop, eDVBVolumecontrol
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from .server import KodiExtRequestHandler, UDSServer
 from Tools.BoundFunction import boundFunction
 from Tools.HardwareInfo import HardwareInfo
@@ -102,25 +102,25 @@ class SetAudio:
 
         self.volctrl.setVolume(vol, vol)
 
-        if SystemInfo["CanDownmixAC3"]:
+        if BoxInfo.getItem("CanDownmixAC3"):
             try:
                 open("/proc/stb/audio/ac3", "w").write(ac3)
             except:
                 pass
 
-        if SystemInfo["CanDownmixDTS"]:
+        if BoxInfo.getItem("CanDownmixDTS"):
             try:
                 open("/proc/stb/audio/dts", "w").write(dts)
             except:
                 pass
 
-        if SystemInfo["CanDownmixAAC"]:
+        if BoxInfo.getItem("CanDownmixAAC"):
             try:
                 open("/proc/stb/audio/aac", "w").write(aac)
             except:
                 pass
 
-        if SystemInfo["CanDownmixAACPlus"]:
+        if BoxInfo.getItem("CanDownmixAACPlus"):
             try:
                 open("/proc/stb/audio/aacplus", "w").write(aacplus)
             except:
@@ -129,25 +129,25 @@ class SetAudio:
     def ReadData(self):
         self.VolPrev = self.volctrl.getVolume()
         self.VolPlayer = self.VolPrev
-        if SystemInfo["CanDownmixAC3"]:
+        if BoxInfo.getItem("CanDownmixAC3"):
             try:
                 self.ac3 = open("/proc/stb/audio/ac3", "r").read()
             except:
                 pass
 
-        if SystemInfo["CanDownmixDTS"]:
+        if BoxInfo.getItem("CanDownmixDTS"):
             try:
                 self.dts = open("/proc/stb/audio/dts", "r").read()
             except:
                 pass
 
-        if SystemInfo["CanDownmixAAC"]:
+        if BoxInfo.getItem("CanDownmixAAC"):
             try:
                 self.aac = open("/proc/stb/audio/aac", "r").read()
             except:
                 pass
 
-        if SystemInfo["CanDownmixAACPlus"]:
+        if BoxInfo.getItem("CanDownmixAACPlus"):
             try:
                 self.aacplus = open("/proc/stb/audio/aacplus", "r").read()
             except:
