@@ -120,6 +120,12 @@ class SetAudio:
             except:
                 pass
 
+        if SystemInfo["CanDownmixAACPlus"]:
+            try:
+                open("/proc/stb/audio/aacplus", "w").write(aacplus)
+            except:
+                pass
+
     def ReadData(self):
         self.VolPrev = self.volctrl.getVolume()
         self.VolPlayer = self.VolPrev
@@ -138,6 +144,12 @@ class SetAudio:
         if SystemInfo["CanDownmixAAC"]:
             try:
                 self.aac = open("/proc/stb/audio/aac", "r").read()
+            except:
+                pass
+
+        if SystemInfo["CanDownmixAACPlus"]:
+            try:
+                self.aacplus = open("/proc/stb/audio/aacplus", "r").read()
             except:
                 pass
 
